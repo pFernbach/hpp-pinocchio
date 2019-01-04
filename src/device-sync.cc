@@ -32,7 +32,7 @@ namespace hpp {
     bool AbstractDevice::currentConfiguration (ConfigurationIn_t configuration)
     {
       DeviceData& data = d();
-      if (configuration != data.currentConfiguration_) {
+      if (configuration.size() != data.currentConfiguration_.size() || configuration != data.currentConfiguration_) {
         data.invalidate();
         data.currentConfiguration_ = configuration;
         return true;

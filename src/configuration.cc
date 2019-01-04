@@ -130,7 +130,7 @@ namespace hpp {
                       const value_type& u,
                       ConfigurationOut_t result)
     {
-      result = se3::interpolate<LieGroup>(robot->model(), q0, q1, u);
+      result.head(robot->configSize() - robot->extraConfigSpace().dimension()) = se3::interpolate<LieGroup>(robot->model(), q0, q1, u);
       const size_type& dim = robot->extraConfigSpace().dimension();
       result.tail (dim) = u * q1.tail (dim) + (1-u) * q0.tail (dim);
     }
